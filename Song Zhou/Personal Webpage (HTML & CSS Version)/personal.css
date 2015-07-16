@@ -1,0 +1,9 @@
+img{
+	margin-right: 10px;
+	border-style: groove;
+	float: left;
+}
+* {font-family: sans-serif;}
+a:hover{color: yellow;}
+.Stanford{color: red;}
+h1{text-align: center;}

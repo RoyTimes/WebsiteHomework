@@ -1,0 +1,66 @@
+.price{
+	float: right;
+}
+.col{
+	float: left;
+	width: 400px;
+	margin-right: 20px; 
+}
+.field{
+	border: 2px black solid;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+.title{
+	margin: 5px;
+	color: white;
+	font-variant: small-caps;
+	/*font-weight: bold;*/
+	font-size: 20pt;
+	background-color: grey;
+	border: 2px black solid;
+	padding-top: 4px;
+	/*padding-bottom: 2px;*/
+	padding-left: 2px;
+}
+#main{
+	font-family: sans-serif;
+}
+.select{
+	margin: 5px;
+}
+.cell{
+	width: 380px;
+}
+ul{
+	float: left;
+	margin: 0px;
+}
+li{
+	font-size: 10pt;
+}
+.final{
+	margin: 5px;
+	padding-left: 15px;
+}
+#bot{
+	float: right;
+}
+#finalprice{
+	width: 180px;
+}
+#colorselector{
+	/*margin: 5px;*/
+	height: 75px;
+	width: 80px;
+}
+#carphoto{
+	float: right;
+}
+#display{
+	height: 150px;
+}
+.list{
+	float: left;
+}
+

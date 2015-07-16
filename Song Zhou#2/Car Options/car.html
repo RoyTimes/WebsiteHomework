@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Confiig Your GT Super SportCar</title>
+	<link rel="stylesheet" type="text/css" href="car.css">
+	<script type="text/javascript">
+		function calprice(){
+			var sum = 0;
+
+			var modelform = document.getElementById('modelform');
+			for (var i = 0; i < modelform.length; i ++){
+				if (modelform[i].checked) {
+					var getst = modelform[i].value;
+					if (getst == "Manual") sum += 17790;
+					else if (getst == "Automatic") sum += 18590;
+					else if (getst == "SpecialManual") sum += 22455;
+					else if (getst == "SpcialSport") sum += 23155;
+					break;
+				}
+			}
+
+			var factoryform = document.getElementById('factoryform');
+			for (var j = 0; j < factoryform.length; j ++) {
+				if (factoryform[j].checked){
+					if (factoryform[j].value == "combo1") sum += 1235;
+					else if (factoryform[j].value == "combo2") sum += 3345;
+					break;
+				}
+			}
+
+			var dealerform = document.getElementById('dealerform');
+			for (var k = 0; k < dealerform.length; k ++){
+				if (dealerform[k].checked) {
+					if (dealerform[k].value == "cd") sum += 550;
+					else if (dealerform[k].value == "vip") sum += 399;
+					else if (dealerform[k].value == "Auto") sum += 295;
+				}
+			}
+			var sumstr = sum + "";
+
+			var result = ""; var lensumstr = sumstr.length;
+			while (lensumstr >= 3){
+				result = sumstr.substring(lensumstr - 3, lensumstr) + result;
+				lensumstr -= 3;
+				if (lensumstr > 3) result = "," + result;
+			} 
+			if (lensumstr != 0) result = sumstr.substring(0, lensumstr) + "," + result;
+			result = "$" + result;
+
+			if (sum == 0) result = "$0";
+			document.getElementById('finalprice').value = result;
+		}
+		function changepic(){
+			var color = document.getElementById('colorselector').value;
+			document.getElementById('carphoto').src = color + ".jpg";
+
+		}
+
+	</script>
+
+</head>
+<body>
+	<div id="main">
+		<h1>Configure Your GT Super SportCar</h1>
+		<div class="col">
+			<div class="field">
+				<div class="title">
+					Configuration
+				</div>
+				
+				<form id="modelform" class="select">
+					<table>
+						<tr><td class="cell"><input name="model" id="Manual" type="radio" value="Manual">
+							<label for="Manual">GT Manual</label><span class="price">$17,790.00</span></td></tr>
+						<tr><td class="cell"><input name="model" id="Automatic" type="radio" value="Automatic">
+							<label for="Automatic">GT Automatic</label><span class="price">$18,590.00</span></td></tr>
+						<tr><td class="cell"><input name="model" id="SpecialManual" type="radio" value="SpecialManual">
+							<label for="SpecialManual">GT-S Manual</label><span class="price">$22,455.00</span></td></tr>
+						<tr><td class="cell"><input name="model" id="SpcialSport" type="radio" value="SpcialSport">
+							<label for="SpcialSport">GT-S Sportshift</label><span class="price">$23,155.00</span></td></tr>
+					</table>
+				</form> <!-- END OF SELECT -->
+
+
+			</div> <!-- END OF FILED -->
+			<div class="field">
+				<div class="title">
+					Factory Options
+				</div>
+				<form id="factoryform" class="select">
+					<table>
+
+						<tr><td class="cell"><input name="factory" id="combo1" type="radio" value="combo1">
+							<label for="combo1">Option Combo #1
+								<span class="price">$1235.00</span>
+							</label></td></tr>
+						<tr><td class="list">
+							<ul>
+									<li>Power Windows, Doors, Cruise Control</li>
+							</ul>
+
+						</td></tr>
+						<tr><td class="cell"><input name="factory" id="combo2" type="radio" value="combo2">
+							<label for="combo2">Option Combo #2
+							<span class="price">$3354.00</span>
+						</label></td></tr>
+						<tr><td class="list">
+							<ul>
+								<li>Rear Spoiler and Fog Lamps</li>
+								<li>Keyless Entry</li>
+								<li>Power Tilt & Slide Moonroof</li>
+								<li>Power Windows, Doors, Cruise Control</li>
+							</ul>
+						</td></tr>
+
+						<tr><td class="cell"><input name="factory" id="nocombo" type="radio" value="nocombo">
+							<label for="nocombo">No Combo
+								<span class="price">$0</span>
+							</label></td></tr>
+					</table>
+				</form>
+			</div> <!-- END OF THE FIELD TWO -->
+
+			<div class="field">
+				<div class="title">
+					Dealer Option
+				</div>
+				<form id="dealerform" class="select">
+					<table>
+						<tr><td class="cell"><input name="dealer" id="cd" type="checkbox" value="cd">
+							<label for="cd">CD Autochange
+							<span class="price">$550.00</span>
+						</label></td></tr>
+
+						<tr><td class="cell"><input name="dealer" id="vip" type="checkbox" value="vip">
+							<label for="vip">VIP Security System
+							<span class="price">$399.00</span>
+						</label></td></tr>
+
+						<tr><td class="cell"><input name="dealer" id="Auto" type="checkbox" value="Auto">
+							<label for="Auto">Auto-Dimming Mirror
+							<span class="price">$295.00</span>
+						</label></td></tr>
+					</table>
+				</form>
+			</div> <!-- END OF FINAL FIELD -->
+
+			<div class="field">
+				<div class="title">
+					Total Price
+				</div>
+				<div class="final">
+					<input id="finalprice" type="text">
+					<input id="bot" value="Calcultate Total" type="button" onclick="calprice();">
+				</div>
+			</div> <!-- END OF THE CAL SECTION -->
+		</div>
+		<div class="col">
+			<div class="field" id="display">
+				<div class="title">
+					Choose A Color
+				</div>
+				<div class="select">
+					<select name="color" id="colorselector" multiple size="5" onchange="changepic();">
+						<option value="red">Red</option>
+						<option value="blue">Blue</option>
+						<option value="silver">Silver</option>
+						<option value="white">White</option>
+						<option value="black">Black</option>
+					</select>
+				
+					<img id="carphoto" src="white.jpg" alt="the photo of the car loaded failed">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

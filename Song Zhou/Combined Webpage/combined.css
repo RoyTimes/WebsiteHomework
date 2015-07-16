@@ -1,0 +1,20 @@
+.news{
+	float: left;
+	width: 400px;
+	margin: 0px 15px;
+}
+
+.brief{
+	float: left;
+	width: 200px;
+	margin: 0px 10px;
+	font-weight: 600;
+}
+#main{
+	font-family: sans-serif;
+	margin: auto;
+	width: 900px;
+}
+.section{
+	overflow: hidden;
+}

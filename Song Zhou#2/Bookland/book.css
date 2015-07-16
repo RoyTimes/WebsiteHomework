@@ -1,0 +1,43 @@
+body{
+	background-color: 
+		rgb(208, 220, 252);
+}
+#main{
+	width: 1000px;
+	margin: auto;
+	font-family: sans-serif;
+}
+#head{
+	font-size: 100pt;
+	padding-left: 230px;
+	padding-right: 230px;
+	padding-bottom: 30px; 
+}
+#field{
+	border: 2px black solid;
+	padding-left: 265px;
+	padding-right: 265px;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+#getinfo{
+	width: 466px;
+	margin-bottom: 30px;
+}
+td{
+	width: 592px;
+	padding-bottom: 5px;
+}
+.lab{
+	font-size: 15pt;
+	font-weight: lighter;
+}
+.getin{
+	width: 200px;
+}
+#find{height: 30px;}
+#clear{height: 30px;}
+#out{
+	width: 466px;
+	height: 300px;
+}

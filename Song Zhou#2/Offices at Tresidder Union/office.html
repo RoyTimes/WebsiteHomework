@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Offices in Tresidder Union</title>
+	<link rel="stylesheet" type="text/css" href="office.css">
+	<script type="text/javascript">
+	var phonenumber = new Array ("725-2800","723-7772","723-2733","725-0911");
+	var names = new Array ("Residential Education (ResEd)", "Student Services Center", "Office of Student Activities (OSA)", "Vice-Provost of Student Affairs");
+	var intro = new Array ("The Office of Residential Education is responsible for developing the policies, programs, and staffing which support the intellectual, educational, and community-building activities in student residences.  Second Floor.", "Visit the Student Services Center for assistance with university billing, financial aid disbursements, refunds, cash advances, payroll deductions, enrollment, Stanford degree policies & procedures, Stanford ID card, forms pickup & drop-off, and more..  Second floor.", "Services for student organizations, student-initiated major events and programs, and fraternities and sororities.  Second floor.", "he Vice Provost for Student Affairs is responsible to the Provost for providing services and programs to undergraduate and graduate students in support of the academic mission of the University.  Second floor.");
+	var shortname = new Array ("resed", "ssc", "osa", "vpsa");
+	var image = new Array ("resed.jpg", "seal.gif", "seal.gif", "seal.gif");
+	var newwindow;
+
+	var flag = 0;
+
+	function popout (url, name, value){
+		var getname = document.getElementById('chooseoffice').value;
+		for (var i = 0; i < 4; i ++) if(shortname[i] == getname) break;
+		if (i == 4) return;
+
+		if (typeof (newwindow) != "Object")
+			newwindow = window.open(url, name, value);
+		else {
+			if (!newwindow.closed) newwindow.location.href = url;
+			else newwindow = window.open(url, name, value);
+		}
+		newwindow.document.open();
+		newwindow.document.writeln("<style>img{float:right;}p{float:left;width:400px;}body{font-family: sans-serif;}</style>")
+		newwindow.document.writeln("<h1>"+names[i]+"</h1>");
+		newwindow.document.writeln("<h2>"+phonenumber[i]+"</h2>");
+		newwindow.document.writeln("<p>"+intro[i]+"</p>");
+		newwindow.document.writeln("<img src='"+image[i]+"' alt='Alt'>");
+		newwindow.document.close();
+		newwindow.focus();
+		newwindow.showfocus(window);
+	}
+	</script>
+</head>
+<body>
+	<div id="main">
+		<img id="title" src="offices-bnr.gif" alt="Load office banner failed"/>
+		<div id="left">
+			<p class="text">Tresidder Union houses a number of University Offices. Most of these offices are part of the Vice-Provost Student Affairs (VPSA) organization.</p>
+			<p class="text">To learn more about an individual office in Tresidder, select the name of the office from the pulldown menu below:</p>
+			<select id="chooseoffice" onchange="popout('file.html', 'newwindow', 'width=650, height=350');">
+				<option value="none">Choose an Office</option>
+				<option value="resed">Residential Education (ResEd)</option>
+				<option value="ssc">Student Services Center</option>
+				<option value="osa">Office of Student Affairs (OSA)</option>
+				<option value="vpsa">Vice-Provost of Student Affairs</option>
+			</select>
+		</div>
+		<img id="seal" src="seal.gif" alt="Seal loaded failed"/>
+	</div>
+</body>
+</html>

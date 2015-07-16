@@ -1,0 +1,25 @@
+#main{
+	width: 640px;
+	margin: auto;	
+	font-family: sans-serif;
+	margin-top: 20px;
+}
+.text{
+	float: left;
+	width: 440px;
+}
+#seal{
+	float: right;
+}
+.col{
+	float: left;
+}
+#left{
+	width: 350px;
+	float: left;
+}
+#title{
+	width: 500px;
+	padding-left: 70px;
+	padding-right: 70px;
+}

@@ -1,0 +1,59 @@
+.section{
+	overflow: hidden;
+}
+.col{
+	float: left;
+}
+#main{
+	
+	width: 800px;
+	margin: auto;
+}
+#photo{
+	float: left;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+#title{
+	color: #cc0000;
+	font-size: 36pt;
+	font-weight: bold;
+	float: left;
+	font-family: sans-serif;
+	/*width: 800px;*/
+}
+#date{
+	color: #cc0000;
+	float: right;
+	font-size: 12pt;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+#Edition{float: right;}
+#calendar{
+	font-size: 14pt;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+#binghall{
+	font-size: 18pt;
+	font-weight: bold;
+	font-family: sans-serif;
+
+}
+.wide{width: 500px;}
+.narrow{width: 290px; padding-left: 10px;}
+.items{
+	font-style: italic;
+	font-family: sans-serif;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 2px solid black;
+}
+.last{border-bottom: 2px solid black;}
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+#all{
+	margin-top: 20px;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: sans-serif;
+	background-color: rgb(211, 211, 211);
+	padding: 70px 70px 70px 70px;
+}
+
+h1 {
+	font-size: 62px;
+	color: red;
+	font-variant: small-caps;
+}
+#titlebar{
+	background-color: white;
+	padding-left: 10px;
+	border: 5px solid white;
+	margin-bottom: 25px;
+}
+body{
+	background-image: url("seal.gif");
+	background-repeat: repeat;
+}
+#seal{
+	max-width: 100%;
+	max-height: 100%;
+	float: right;
+}
+.entry{
+	border: 2px red solid;
+	padding: 2px 10px 10px 10px;
+	margin: 25px 0px 0px 0px;
+	background-color: rgb(211, 211, 211);
+}
+.entrydate {
+	color: red;
+	float: right;
+	font-style: italic;
+	padding: 5px 5px 5px 5px;
+	margin: 10px 10px 10px 15px;
+	border: 1px red solid;
+
+}
+.entrytitle{
+	font-size: 25px;
+	color: red;
+	font-family: "Times New Roman";
+}
+.entryfooter{
+	margin-top: 20px;
+	padding: 5px 5px 5px 5px;
+	text-decoration: underline;
+	font-style: italic;
+	color: blue;
+}
