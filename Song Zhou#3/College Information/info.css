@@ -1,0 +1,77 @@
+#main{
+	font-family: sans-serif;
+ 	width: 1100px; 
+	margin: auto;
+}
+.col{
+	width: 600px;
+	float: left;
+}
+#second{
+	width: 400px;
+	border: 2px black solid;
+}
+#title{
+	color: white;
+	background-color: grey;
+	border-bottom: 2px black solid;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 140px;
+}
+#firstline{
+	padding-left: 10px;
+	padding-bottom: 5px;
+	padding-top: 10px;
+}
+.getinput{
+	padding: 10px;
+}
+.larg{
+	font-size: 10pt;
+	font-style: italic;
+}
+.smal{
+	margin-left: 13px;
+	font-size: 10pt;
+}
+.gettext{
+	height: 20px;
+	width: 300px;
+}
+th{
+	width: 100px;
+	background-color: grey;
+	color: white;
+	border-top: 2px black solid;
+	border-bottom: 2px black solid;
+	border-right: 2px black solid;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+td{
+	width: 100px; 
+	border-bottom: 2px black solid;
+	border-right: 2px black solid;
+	height: 20px;
+}
+table{
+	border-spacing: 0px;
+}
+.firstcell{
+	width: 140px;
+	border-left: 2px black solid; 
+}
+.colorline{
+	background-color: rgb(235, 235, 235);
+}
+#updatebutton{
+	margin-top: 310px;
+}
+#bu{
+	width: 70px;
+	height: 30px;
+	float: right;
+	margin-right: 430px;
+}

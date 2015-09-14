@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Stanford Gallery</title>
+	<link rel="stylesheet" type="text/css" href="gallery.css">
+	<script type="text/javascript">
+	function changeforward() {
+		var getpic = document.getElementById('photo');
+		var getcaption = document.getElementById('caption');
+
+		var cur = 0;
+		for ( ; cur < photoArray.length ; cur ++)
+			if (photoArray[cur].caption == getcaption.innerHTML) break;
+		if (cur + 1 == photoArray.length) cur = -1;
+		getpic.src = photoArray[cur + 1].filename;
+		getcaption.innerHTML = photoArray[cur + 1].caption;
+	}
+	function changebackward() {
+		var getpic = document.getElementById('photo');
+		var getcaption = document.getElementById('caption');
+
+		var cur = 0;
+		for ( ; cur < photoArray.length ; cur ++)
+			if (photoArray[cur].caption == getcaption.innerHTML) break;
+		if (cur == 0) cur = photoArray.length;
+		getpic.src = photoArray[cur - 1].filename;
+		getcaption.innerHTML = photoArray[cur - 1].caption;
+	}
+	</script>
+</head>
+<body onload="handleresize();">
+	<script type="text/javascript">
+	window.addEventListener("resize", handleresize, false);
+	function handleresize () {
+		var getheight = window.innerHeight;
+		var getwidth = window.innerWidth;
+
+		var getmain = document.getElementById('photoSection');
+		var getpic = document.getElementById("photo");
+		var getcaption = document.getElementById("caption");
+		var getleft = document.getElementById("backwardOverlay");
+		var getright = document.getElementById("forwardOverlay");
+
+
+		getmain.style.width = getwidth * (2 / 3) + "px";
+		getmain.style.height = getheight * (5 / 6) + "px";
+
+		getpic.style.width = getwidth * (2 / 3) + "px";
+		getpic.style.height = getheight * (9 / 12) + "px";
+
+		getmain.style.marginTop = getheight * (1 / 12) + "px";
+
+		getcaption.style.height = getheight * (1 / 12) + "px";
+
+		var getnewwidth = parseInt(getmain.style.width) / 2 + "px";
+		var getnewheight = parseInt(getpic.style.height) + "px";
+		getleft.style.width = getnewwidth;
+		getright.style.width = getnewwidth;
+		getleft.style.height = getnewheight;
+		getright.style.height = getnewheight;
+
+
+	}
+	</script>
+	
+	<div id="photoSection" >
+		<img  id='photo' src='memchu.jpg' alt='photo'/>
+		<div id="caption">Stanford Memorial Church - the church used to have an 80' bell tower, which fell in the 1906 earthquake.</div>
+		<div id="forwardOverlay" onclick="changeforward();"></div>
+		<div id="backwardOverlay" onclick="changebackward();"></div>
+	</div>
+	<script>
+	"use strict";
+
+	var photoArray = [
+			{filename: "memchu.jpg",
+			 caption: "Stanford Memorial Church - the church used to have an 80' bell tower, which fell in the 1906 earthquake."},
+			{filename: "quad.jpg",
+			 caption: "The Stanford Quad"},
+			{filename: "hoop.jpg",
+			 caption: "The <i>Red Hoop Fountain</i> with Green Library in the background."},
+			{filename: "memorial-court.jpg",
+			 caption: "Memorial Court (in the front of the Quad) with Rodin's <i>Burghers of Calais</i> statues."},
+			{filename: "gates.jpg",
+			 caption: "The Gates Building - home of Stanford Computer Science."},
+			{filename: "stone-river.jpg",
+			 caption: "The Stone River statue near the Cantor Arts Center (Stanford's own art museum)."},
+		];
+	</script>
+	</body>
+</html>

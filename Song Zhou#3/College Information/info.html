@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>College Information</title>
+	<link rel="stylesheet" type="text/css" href="info.css"/>
+	<script type="text/javascript">
+	var univArray = new Array(
+	{name: "Stanford University", nickname: "Stanford", ownership: "private", SATh: 1570, SATl: 1380, tuition: 44757},
+	{name: "University of California, Berkeley", nickname: "UC Berkeley", ownership: "public", SATh: 1500, SATl: 1250, tuition: 13844},
+	{name: "University of California, Santa Cruz", nickname: "UC Santa Cruz", ownership: "public", SATh: 1280, SATl: 1000, tuition: 13398},
+	{name: "San Francisco State University", nickname: "SFSU", ownership: "public", SATh: 1110, SATl: 880, tuition: 6468},
+	{name: "San Jose State University", nickname: "SJSU", ownership: "public", SATh: 1160, SATl: 880, tuition: 9496},
+	{name: "Sonoma State University", nickname: "Sonoma State", ownership: "public", SATh: 1090, SATl: 880, tuition: 7276},
+	{name: "California State University, East Bay", nickname: "CalState East Bay", ownership: "public", SATh: 1010, SATl: 800, tuition: 6550, room: 6435},
+	{name: "University of San Francisco", nickname: "USF", ownership: "private", SATh: 1270, SATl: 1070, tuition: 41450},
+	{name: "Santa Clara University", nickname: "SCU", ownership: "private", SATh: 1380, SATl: 1190, tuition: 43812},
+	{name: "Mills College", nickname: "Mills College", ownership: "private", SATh: 1250, SATl: 1040, tuition: 42918}
+	);
+
+	function writetable () {
+		var getin = document.getElementById('ownerradio');
+		var getTU = document.getElementById('tuit').value;
+		var getSATH = document.getElementById('sath').value;
+		var getSATL = document.getElementById('satl').value;
+
+
+		if (getTU == "") getTU = 999999; else getTU = parseInt(getTU);
+		if (getSATH == "") getSATH = 0; else getSATH = parseInt(getSATH);
+		if (getSATL == "") getSATL = 0; else getSATL = parseInt(getSATL);
+
+		for (var i = 0; i < getin.length; i ++)
+			if (getin[i].checked) getin = getin[i].value;
+
+
+		var getoutput = new Array();
+		for (var i = 0; i < univArray.length; i ++){
+			var getcurrent = univArray[i];
+			if (getin == "public" || getin == "private")
+				if (getcurrent.ownership != getin) continue;
+			if (getcurrent.tuition > getTU) continue;
+			if (getcurrent.SATl < getSATL) continue;
+			if (getcurrent.SATh < getSATH) continue;
+			getoutput.push(getcurrent);
+		}
+
+		var writein = document.getElementById('writecontent');
+		var finalstring = "<table><tr><th class='firstcell'>Name</th><th>SAT High</th><th>SAT Low</th><th>Tuition</th></tr>"
+		for (var i = 0; i < getoutput.length; i ++){
+			finalstring = finalstring + "<tr";
+			// console.error (i + " and the result of " + parseInt(i) % 2);
+			if (parseInt(i) % 2 == 1) finalstring = finalstring + " class='colorline'";
+			// if (i = getoutput.length - 1) finalstring = finalstring + "class='finalline'";
+			finalstring = finalstring + "><td class='firstcell'>"+getoutput[i].nickname+"</td><td>"+getoutput[i].SATh+"</td><td>"+getoutput[i].SATl+"</td><td>"+getoutput[i].tuition+"</td></tr>";
+		} finalstring = finalstring + "</table>";
+
+		console.error (finalstring);
+		writein.innerHTML = finalstring;
+	}
+	</script>
+
+
+</head>
+
+<body>
+	<div id="main">
+		<h1>Bay Area Colleges and Universities</h1>
+		<div class="col" id="writecontent">
+			<table><tr><th class='firstcell'>Name</th><th>SAT High</th><th>SAT Low</th><th>Tuition</th></tr><tr><td class='firstcell'>Stanford</td><td>1570</td><td>1380</td><td>44757</td></tr><tr class='colorline'><td class='firstcell'>UC Berkeley</td><td>1500</td><td>1250</td><td>13844</td></tr><tr><td class='firstcell'>UC Santa Cruz</td><td>1280</td><td>1000</td><td>13398</td></tr><tr class='colorline'><td class='firstcell'>SFSU</td><td>1110</td><td>880</td><td>6468</td></tr><tr><td class='firstcell'>SJSU</td><td>1160</td><td>880</td><td>9496</td></tr><tr class='colorline'><td class='firstcell'>Sonoma State</td><td>1090</td><td>880</td><td>7276</td></tr><tr><td class='firstcell'>CalState East Bay</td><td>1010</td><td>800</td><td>6550</td></tr><tr class='colorline'><td class='firstcell'>USF</td><td>1270</td><td>1070</td><td>41450</td></tr><tr><td class='firstcell'>SCU</td><td>1380</td><td>1190</td><td>43812</td></tr><tr class='colorline'><td class='firstcell'>Mills College</td><td>1250</td><td>1040</td><td>42918</td></tr></table>
+		</div>
+
+		<div class="col" id="second">
+			<div id="title">Search Criteria</div>
+			<div id="firstline">
+				<form id="ownerradio">
+					<input type="radio" name="owner" class="radiobox" value="public"/>
+					<label>Public</label>
+					<input type="radio" name="owner" class="radiobox" value="private"/>
+					<label>Private</label>
+					<input type="radio" name="owner" class="radiobox" value="dontcare"/>
+					<label>Don't Care</label>
+				</form>
+			</div>
+
+			<div class="getinput">
+				<span class="doubleline">
+					<span class="larg">Maximum Tuition</span> 
+					<span class="smal">leave blank for don't care</span>
+				</span>
+				<input class="gettext" type="text" id="tuit"/>
+			</div>
+
+			<div class="getinput">
+				<span class="doubleline">
+					<span class="larg">Maximum High SAT</span>
+					<span class="smal">leave blank for don't care</span>
+				</span>
+				<input class="gettext" type="text" id="sath"/>
+			</div>
+
+			<div class="getinput">
+				<span class="doubleline">
+					<span class="larg">Minimum Low SAT</span>
+					<span class="smal">leave blank for don't care</span>
+				</span>
+				<input class="gettext" type="text" id="satl"/>
+			</div>
+		</div>
+		<div id="updatebutton">
+		<input id="bu" type="button" value="Update" onclick="writetable();"/>
+		</div>
+
+	</div>
+</body>
+
+</html>

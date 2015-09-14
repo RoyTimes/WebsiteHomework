@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax</title>
+	<meta charset="UTF-8">
+	<!-- <link rel="stylesheet" type="text/css" href="ajax.css"> -->
+	<style type="text/css">
+	#result{
+		margin-top: 30px;
+		width: 250px;
+		height: 200px;
+	}
+
+	</style>
+
+	<script type="text/javascript">
+	var requestObj = null;
+
+	function getweather() {
+		
+		var zipcode = document.getElementById('getzip').value;
+		var weatherURL = "http://web.stanford.edu/~psyoung/cgi-bin/a3.php?yws_path=" + encodeURIComponent("p=" + zipcode); 
+
+		// console.error (weatherURL);
+		requestObj = new XMLHttpRequest();
+		requestObj.addEventListener("load",processNews,null);
+		requestObj.open('GET', weatherURL, true);
+		requestObj.send(null);
+	}
+	// function processNews () {
+	// 	console.error ()
+	// }
+	function processNews() {
+		
+		var getCurResult = document.getElementById("result");
+
+		var getlocation = requestObj.responseXML.getElementsByTagName("yweather:location");
+		var getweather = requestObj.responseXML.getElementsByTagName(
+			"yweather:condition");
+		if (getlocation.length == 0)
+			getlocation = requestObj.responseXML.getElementsByTagName("location");
+		if (getweather.length == 0)
+			getweather = requestObj.responseXML.getElementsByTagName(
+				"condition");
+
+		if (getlocation.length == 0){
+			var writeContent = getCurResult.value + "City Not Found" + "\n";
+			document.getElementById("result").value = writeContent;
+			return;
+		}
+
+		var	writeContent = getCurResult.value + getlocation[0].attributes[0].nodeValue + ": " + 
+							getweather[0].attributes[0].nodeValue + " " + 
+							getweather[0].attributes[2].nodeValue + "\n";
+
+
+		document.getElementById("result").value = writeContent;
+
+	}
+
+	function clearthing () {
+		document.getElementById("result").value = "";
+		document.getElementById("getzip").value = "";
+	}
+
+	</script>
+
+</head>
+<body>
+<h1>Yahoo Weather via AJAX</h1>
+<h3>Enter ZIP Code:</h3>
+<input type="text" id="getzip" />
+<input type="button" value="Get Weather" onclick="getweather();">
+<input type="button" value="clear" onclick="clearthing();"><br/>
+<textarea id="result"></textarea>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+	<title>Angular JS Test</title>
+	<meta charset="UTF-8"/>
+	<script src="angular.js"></script>
+</head>
+<body ng-init="cities=[{name: 'Mumbai', continent: 'Asia', population: 20400000},
+		{name: 'New York', continent: 'North America', population: 21295000},
+		{name: 'San Francisco', continent: 'North America', population: 5780000},
+		{name: 'London', continent: 'Europe', population: 8580000},
+		{name: 'Rome', continent: 'Europe', population: 271500},
+		{name: 'Melbourne', continent: 'Australia', population: 3900000},
+		{name: 'San Jose', continent: 'North America', population: 7354555},
+		{name: 'Rostov-on-Don', continent: 'Europe', population: 1052000}];">
+
+	<h1>Cities</h1>
+	Search: <input type="text" ng-model="searchitem.name">
+	<ul>
+		<li ng-repeat="city in cities | filter: searchitem">
+			{{city.name}}, {{city.continent}}, {{city.population}}
+		</li>
+	</ul>
+</body>
+</html>

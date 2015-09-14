@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Stanford Map</title>
+	<link rel="stylesheet" type="text/css" href="map.css"/>
+	<script type="text/javascript">
+	var isDragging = false;
+	var diffX, diffY;
+	var nameArray = new Array ("map-s.gif", "map-m.gif", "map-l.gif", "map-xl.gif");
+	var zoominArray = new Array("1.5937813440320963", "1.4933920704845816", "1.3333333333333333");
+	var zoomoutArray = new Array("0.626770884220811", "0.6682990532158015", "0.75");
+
+	function handleMouseDown (evt) {
+		if (evt.target.id == "map") {
+			evt.target.style.cursor = 'move';	
+			isDragging = true;
+
+			diffX = evt.clientX - evt.target.offsetLeft;
+			diffY = evt.clientY - evt.target.offsetTop;
+			evt.preventDefault();
+		}}
+	function handleMouseUp (evt) {
+		if (isDragging) {
+			var image = document.getElementById('map');
+			var getcontainer = document.getElementById('container');
+			var height = parseInt(getcontainer.style.height);
+			var width = parseInt(getcontainer.style.width);
+
+			var getwriteleft = evt.clientX - diffX;
+			isDragging = false;
+		}
+	}
+	function handleMouseMove (evt) {
+		if (isDragging){
+			var image = document.getElementById('map');
+			var getwriteleft = evt.clientX - diffX;
+			var getwritetop = evt.clientY - diffY;
+			image.style.left = getwriteleft + "px";
+			image.style.top = getwritetop + "px";
+			evt.preventDefault ();
+		}
+	}
+	function handleDblClick (evt) {
+		if (evt.target.id == "map") {
+			var getimage = document.getElementById('map');
+			var getcontainer = document.getElementById("container");
+			var halfheight = parseInt(getcontainer.style.height) / 2;
+			var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+			var writeleft = parseInt(getimage.style.left) + halfwidth - evt.clientX;
+			var writetop = parseInt(getimage.style.top) + halfheight - evt.clientY;
+			getimage.style.left = writeleft + "px";
+			getimage.style.top = writetop + "px";
+		}
+	}
+	function toleft (){
+		var getimage = document.getElementById('map');
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var totdelta = halfwidth;
+
+		// var end = false;
+		// for (var i = 0; i < 40; i ++) {
+		// 	if (! end)
+		// 	setTimeout(function refresh(){
+		// 			var delta = 10;
+		// 			if (totdelta < delta)
+		// 				delta = totdelta, end = true;
+		// 			totdelta = totdelta - delta;
+		// 			getimage.style.left = parseInt(getimage.style.left) + delta + "px";
+		// 			if (end) return;
+
+		// 		} , 3000);
+
+		getimage.style.left = parseInt(getimage.style.left) + totdelta + "px";
+		//}
+	}
+	function toright () {
+		var getimage = document.getElementById('map');
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var writeleft = parseInt(getimage.style.left) - halfwidth;
+		getimage.style.left = writeleft + "px";
+	}
+	function totop () {
+		var getimage = document.getElementById('map');
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var writetop = parseInt(getimage.style.top) + halfheight;
+		getimage.style.top = writetop + "px";
+	}
+	function tobottom () {
+		var getimage = document.getElementById('map');
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var writetop = parseInt(getimage.style.top) - halfheight;
+		getimage.style.top = writetop + "px";
+	} 
+	function zoomin () {
+		var getimage = document.getElementById("map");
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var gettop = parseInt(getimage.style.top) - halfheight;
+		var getleft = parseInt(getimage.style.left) - halfwidth;
+
+		for (var i = 0; i < nameArray.length; i ++)
+			if (nameArray[i] == getimage.alt) break;
+		if (i == nameArray.length - 1) return;
+		getimage.src = nameArray[i + 1];
+		getimage.alt = nameArray[i + 1];
+
+		var writetop = parseFloat(zoominArray[i]) * parseFloat(gettop);
+		var writeleft = parseFloat(zoominArray[i]) * parseFloat(getleft);
+		writetop = writetop + halfheight;
+		writeleft = writeleft + halfwidth;
+		getimage.style.left = writeleft + "px";
+		getimage.style.top =  writetop + "px";
+	}
+	function zoomout () {
+		var getimage = document.getElementById("map");
+		var getcontainer = document.getElementById("container");
+		var halfheight = parseInt(getcontainer.style.height) / 2;
+		var halfwidth = parseInt(getcontainer.style.width) / 2;
+
+		var gettop = parseInt(getimage.style.top) - halfheight;
+		var getleft = parseInt(getimage.style.left) - halfwidth;
+
+		for (var i = nameArray.length - 1; i > 0; i --)
+			if (nameArray[i] == getimage.alt) break;
+		if (i == 0) return;
+		getimage.src = nameArray[i - 1];
+		getimage.alt = nameArray[i - 1];
+
+		var writetop = parseFloat(zoomoutArray[i - 1]) * parseFloat(gettop);
+		var writeleft = parseFloat(zoomoutArray[i - 1]) * parseFloat(getleft);
+		writetop = writetop + halfheight;
+		writeleft = writeleft + halfwidth;
+
+
+		getimage.style.left = writeleft + "px";
+		getimage.style.top =  writetop + "px";
+	}
+	function resizeFrame () {
+		var getinnerheight = window.innerHeight;
+		var getinnerwidth = window.innerWidth;
+
+		var gethalf = document.getElementById("half");
+		var getcontainer = document.getElementById("container");
+		var getimage = document.getElementById("map");
+
+		var getwidth = parseInt(getcontainer.style.width);
+		var getheight = parseInt(getcontainer.style.height);
+
+		getcontainer.style.width = getinnerwidth - 500 + "px";
+		getcontainer.style.height = getinnerheight - 80 + "px";
+		gethalf.style.width = parseInt(getcontainer.style.width) / 2 + "px";
+		gethalf.style.height = parseInt(getcontainer.style.height) / 2 + "px";
+
+		var writeleft = parseInt(getimage.style.left) + parseInt(getcontainer.style.width) / 2 - getwidth / 2;
+		var writetop = parseInt(getimage.style.top) + parseInt(getcontainer.style.height) / 2 - getheight / 2;
+
+		getimage.style.top = writetop + "px";
+		getimage.style.left = writeleft + "px";
+
+	}
+
+	// To do
+
+	// Delete the half Div
+	// Preload the pic
+	// smooth scrolling
+
+	//>> Border check code
+		// if (writeleft > 0) writeleft = 0;
+		// if (writeleft < 800 - getimage.width)
+		// 	writeleft = 800 - getimage.width;
+		// if (writetop > 0) writetop = 0;
+		// if (writetop < 600 - getimage.height)
+		// 	writetop = 600 - getimage.height;
+
+	</script>
+</head>
+<body onload="resizeFrame();">
+	<div id="main">
+		<div id="container" style="width: 800px; height: 600px;">
+			<img src="map-s.gif" id="map" alt="map-s.gif" style="top: -200px;left: -200px;">
+			<!-- <div id="half">  </div> -->
+		</div>
+		<div id="controldiv">
+			<div id="zoom">
+				<input class="control" id="zoomin" type="button" value="+" onclick="zoomin();">
+				<input class="control" id="zoomout" type="button" value="-" onclick="zoomout();">
+			</div>
+			<div id="pos">
+				<input class="control" id="toleft" type="button" value="<" onclick="toleft();">
+				<input class="control" id="toright" type="button" value=">" onclick="toright();">
+				<input class="control" id="totop" type="button" value="^" onclick="totop();">
+				<input class="control" id="tobottom" type="button" value="v" onclick="tobottom();">
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		document.addEventListener("mousemove",handleMouseMove,false);
+		document.addEventListener("mousedown",handleMouseDown,false); 
+		document.addEventListener("mouseup",handleMouseUp,false); 
+		document.addEventListener("dblclick",handleDblClick,false);
+
+		window.addEventListener("resize",resizeFrame,false);
+	</script>
+</body>
+</html>

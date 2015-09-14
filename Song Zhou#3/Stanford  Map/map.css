@@ -1,0 +1,61 @@
+#main{
+	/*width: 1400px;*/
+	margin: 10px;
+}
+.col{float: left;}
+#container{
+	position: relative;
+	overflow: hidden;
+	float: left;
+	border: 10px grey solid;
+}
+#controldiv{
+	position: relative;
+	width: 400px;
+	height: 600px;
+	padding-left: 30px;
+	float: left;
+}
+#zoom{
+	margin-top: 40px;
+	width: 400px;
+}
+#pos{
+	width: 400px;
+	margin-top: 20px;
+}
+#map{position: absolute;}
+.control{
+	width: 30px;
+	height: 30px;
+}
+#zoom{
+	margin-left: 80px;
+}
+#pos{
+	position: relative;
+	margin-left: 60px;
+}
+#toleft{
+	font-weight: bold;
+	position: absolute;
+	top: 40px;
+}
+#toright{
+	font-weight: bold;
+	position: absolute;
+	top: 40px;
+	left: 80px;
+}
+#totop{
+	position: absolute;
+	font-size: 12pt;
+	left: 40px;
+}
+#tobottom{
+	font-weight: bold;
+	position: absolute;
+	font-size: 10px;
+	top: 80px;
+	left: 40px;
+}
